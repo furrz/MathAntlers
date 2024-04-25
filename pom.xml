@@ -61,9 +61,8 @@
                 <executions>
                     <execution>
                         <id>default-jar</id>
-                        <!-- put the default-jar in the none phase to skip it from being created -->
                         <configuration>
-                            <finalName>${project.artifactId}-${project.version}-non-runnable</finalName>
+                            <finalName>${project.artifactId}-non-runnable-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>
