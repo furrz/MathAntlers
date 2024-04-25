@@ -58,14 +58,6 @@
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.1</version>
-                <executions>
-                    <execution>
-                        <id>default-jar</id>
-                        <configuration>
-                            <finalName>${project.artifactId}-${project.version}-non-runnable</finalName>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -85,8 +77,6 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>${project.artifactId}-${project.version}-runnable</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>

@@ -12,9 +12,9 @@ jobs:
     permissions: write-all
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -22,11 +22,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - run: mkdir staging && cp target/MavenAntlers-*-jar-with-dependencies.jar staging/MavenAntlers.jar
+
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.3.3
+      uses: actions/upload-artifact@v4
       with:
           name: Release JAR
-          path: target/MavenAntlers-*-runnable.jar
+          path: staging/MavenAntlers.jar
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
