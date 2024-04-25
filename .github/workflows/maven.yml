@@ -22,13 +22,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - run: mkdir staging && cp target/MavenAntlers-*-jar-with-dependencies.jar staging/MavenAntlers.jar
+    - run: mkdir staging && cp target/MathAntlers-*-jar-with-dependencies.jar staging/MathAntlers.jar
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
           name: Release JAR
-          path: staging/MavenAntlers.jar
+          path: staging/MathAntlers.jar
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
