@@ -1,0 +1,35 @@
+<!doctype HTML>
+<html lang="en">
+<body style='font-family: sans-serif;'>
+<div style='background: #cce; color: #223; padding: 18px 24px 24px 24px;'>
+    <h1 style='font-weight: normal;'><b>MathAntlers</b> v1.2</h1>
+    by Zyntaks (@PrinceZyntaks)<br/>
+</div>
+<div style='background: #eef; padding: 18px 24px 24px 24px;'>
+    Licensed under the MIT license.<br/>
+    <a href="https://github.com/furrz/MathAntlers">Source Code & License</a><br/><br/>
+    Powered by Java, ANTLR v4, and scilab JLaTeXMath.<br/>
+    <a href='https://www.antlr.org/license.html'>ANTLR v4 License</a><br/>
+    <a href='https://github.com/opencollab/jlatexmath/blob/master/LICENSE'>JLaTeXMath License</a>
+</div>
+<div style='padding: 18px 40px 32px 24px;'>
+    <h2>Brief Syntax Guide</h2>
+    <b>Invisible grouping:</b> <code>{ a + b } / c</code> will put <code>a + b</code> together above
+    <code>c</code>.<br/>
+    <b>Parentheses:</b> <code>(a + b)</code>, <code>{{a + b}}</code>, or <code>[a + b]</code>.<br/>
+    <b>Exponents:</b> <code>a^b</code><br/>
+    <b>Multiply (dot):</b> <code>a*b</code><br/>
+    <b>Divide (fraction):</b> <code>a/b</code><br/>
+    <b>Add, Subtract:</b> <code>a+b</code>, <code>a-b</code><br/>
+    <b>Floor, ceil:</b> <code>floor(a)</code>, <code>ceil(a)</code><br/>
+    <b>Subscript:</b> <code>a_i</code><br/>
+    <b>Set notation:</b> <code>{{ x el R | x < 5 }}</code><br/>
+    <b>Summation:</b> <code>sum(i = 0, 6)</code><br/>
+    <b>Align Lines by Equals Sign:</b> Use <code>==</code> instead of <code>=</code> to align.
+    <b>Function with multiple cases:</b> <pre>f(x) == cases {
+    x + f(x - 1), x > 0;
+    0, x< 1;
+    }</pre><br/>
+</div>
+</body>
+</html>
