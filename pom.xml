@@ -62,7 +62,7 @@
                     <execution>
                         <id>default-jar</id>
                         <configuration>
-                            <finalName>${project.artifactId}-non-runnable-${project.version}</finalName>
+                            <finalName>${project.artifactId}-${project.version}-non-runnable</finalName>
                         </configuration>
                     </execution>
                 </executions>
@@ -85,7 +85,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>${project.artifactId}-v${project.version}</finalName>
+                            <finalName>${project.artifactId}-${project.version}-runnable</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>

@@ -26,7 +26,7 @@ jobs:
       uses: actions/upload-artifact@v4.3.3
       with:
           name: Release JAR
-          path: target/MavenAntlers-v*.jar
+          path: target/MavenAntlers-*-runnable.jar
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
