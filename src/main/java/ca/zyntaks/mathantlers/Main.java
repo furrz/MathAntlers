@@ -1,6 +1,10 @@
+package ca.zyntaks.mathantlers;
+
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 
+import ca.zyntaks.mathantlers.antlr.MathAntlersLexer;
+import ca.zyntaks.mathantlers.antlr.MathAntlersParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -8,29 +12,27 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-
-import javax.swing.*;
 
 public class Main {
-    static String latexSource = "";
+    static String sourceLaTeX = "";
 
     public static void main(String[] args) {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
 
         new MainWindow()
-                .addMenuItem("Copy LaTeX Code", w -> copyString(latexSource))
+                .addMenuItem("Copy LaTeX Code", w -> copyString(sourceLaTeX))
+                .addMenuItem("Copy Rendered Math", w -> copyLaTeXImage())
                 .addMenuItem("About MathAntlers", AboutDialog::new)
                 .onEdit(Main::onEdit)
                 .setVisible(true);
     }
 
     static void onEdit(MainWindow window, String text) {
-        latexSource = compileToLaTeX(text);
+        sourceLaTeX = compileToLaTeX(text);
 
         try {
-            Icon i = renderLaTeX(latexSource);
-            window.showIcon(i);
+            TeXFormula formula = new TeXFormula(sourceLaTeX);
+            window.showIcon(formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 25));
         } catch (Exception e) {
             if (e.getMessage().startsWith("Problem with command align@@env at position")) {
                 window.showError("You can't nest == inside of something else.",
@@ -61,9 +63,14 @@ public class Main {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(str), null);
     }
 
-    static Icon renderLaTeX(String latexSource) throws ParseException {
-        TeXFormula formula = new TeXFormula(latexSource);
-        return formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
+    static void copyLaTeXImage() {
+        try {
+            TeXFormula formula = new TeXFormula(sourceLaTeX);
+            Image image = formula.createBufferedImage(TeXConstants.STYLE_DISPLAY, 200, Color.BLACK, Color.WHITE);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new TransferableImage(image), null);
+        } catch (ParseException e) {
+            e.printStackTrace(System.err);
+        }
     }
 }
 

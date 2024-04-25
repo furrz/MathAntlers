@@ -1,8 +1,7 @@
+package ca.zyntaks.mathantlers;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicSplitPaneDivider;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -20,11 +19,11 @@ public class MainWindow extends JFrame {
         super("MathAntlers");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(400, 300));
-        
+
         try {
             Preferences root = Preferences.userRoot()
                     .node("ca.zyntaks.mathantlers")
-                    .node("MainWindow");
+                    .node("ca.zyntaks.mathantlers.MainWindow");
 
             setSize(root.getInt("width", getPreferredSize().width),
                     root.getInt("height", getPreferredSize().height));
@@ -83,9 +82,8 @@ public class MainWindow extends JFrame {
     }
 
     public MainWindow onEdit(BiConsumer<MainWindow, String> handler) {
-        textArea.getDocument().addDocumentListener(new AllChangesDocumentListener(() -> {
-            handler.accept(this, textArea.getText());
-        }));
+        textArea.getDocument().addDocumentListener(
+                new AllChangesDocumentListener(() -> handler.accept(this, textArea.getText())));
         return this;
     }
 

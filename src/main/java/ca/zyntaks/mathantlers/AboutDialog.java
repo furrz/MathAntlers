@@ -1,3 +1,5 @@
+package ca.zyntaks.mathantlers;
+
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import java.awt.*;
